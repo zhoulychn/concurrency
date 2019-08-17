@@ -41,7 +41,7 @@ import com.zhoulychn.concurrent.locks.ReentrantLock;
 
 import java.util.*;
 
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
+import static com.zhoulychn.concurrent.TimeUnit.NANOSECONDS;
 
 /**
  * A {@link ThreadPoolExecutor} that can additionally schedule

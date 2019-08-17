@@ -40,7 +40,7 @@ import com.zhoulychn.concurrent.locks.ReentrantLock;
 
 import java.util.*;
 
-import static java.util.concurrent.TimeUnit.NANOSECONDS;
+import static com.zhoulychn.concurrent.TimeUnit.NANOSECONDS;
 
 /**
  * An unbounded {@linkplain BlockingQueue blocking queue} of
