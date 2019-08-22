@@ -276,8 +276,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U,V> CompletionStage<V> thenCombine
-        (CompletionStage<? extends U> other,
-         BiFunction<? super T, ? super U, ? extends V> fn);
+    (CompletionStage<? extends U> other,
+     BiFunction<? super T, ? super U, ? extends V> fn);
 
     /**
      * Returns a new CompletionStage that, when this and the other
@@ -296,8 +296,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U,V> CompletionStage<V> thenCombineAsync
-        (CompletionStage<? extends U> other,
-         BiFunction<? super T, ? super U, ? extends V> fn);
+    (CompletionStage<? extends U> other,
+     BiFunction<? super T, ? super U, ? extends V> fn);
 
     /**
      * Returns a new CompletionStage that, when this and the other
@@ -317,9 +317,9 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U,V> CompletionStage<V> thenCombineAsync
-        (CompletionStage<? extends U> other,
-         BiFunction<? super T, ? super U, ? extends V> fn,
-         Executor executor);
+    (CompletionStage<? extends U> other,
+     BiFunction<? super T, ? super U, ? extends V> fn,
+     Executor executor);
 
     /**
      * Returns a new CompletionStage that, when this and the other
@@ -336,8 +336,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U> CompletionStage<Void> thenAcceptBoth
-        (CompletionStage<? extends U> other,
-         BiConsumer<? super T, ? super U> action);
+    (CompletionStage<? extends U> other,
+     BiConsumer<? super T, ? super U> action);
 
     /**
      * Returns a new CompletionStage that, when this and the other
@@ -352,8 +352,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U> CompletionStage<Void> thenAcceptBothAsync
-        (CompletionStage<? extends U> other,
-         BiConsumer<? super T, ? super U> action);
+    (CompletionStage<? extends U> other,
+     BiConsumer<? super T, ? super U> action);
 
     /**
      * Returns a new CompletionStage that, when this and the other
@@ -369,9 +369,9 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U> CompletionStage<Void> thenAcceptBothAsync
-        (CompletionStage<? extends U> other,
-         BiConsumer<? super T, ? super U> action,
-         Executor executor);
+    (CompletionStage<? extends U> other,
+     BiConsumer<? super T, ? super U> action,
+     Executor executor);
 
     /**
      * Returns a new CompletionStage that, when this and the other
@@ -435,8 +435,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U> CompletionStage<U> applyToEither
-        (CompletionStage<? extends T> other,
-         Function<? super T, U> fn);
+    (CompletionStage<? extends T> other,
+     Function<? super T, U> fn);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -454,8 +454,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U> CompletionStage<U> applyToEitherAsync
-        (CompletionStage<? extends T> other,
-         Function<? super T, U> fn);
+    (CompletionStage<? extends T> other,
+     Function<? super T, U> fn);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -474,9 +474,9 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public <U> CompletionStage<U> applyToEitherAsync
-        (CompletionStage<? extends T> other,
-         Function<? super T, U> fn,
-         Executor executor);
+    (CompletionStage<? extends T> other,
+     Function<? super T, U> fn,
+     Executor executor);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -492,8 +492,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public CompletionStage<Void> acceptEither
-        (CompletionStage<? extends T> other,
-         Consumer<? super T> action);
+    (CompletionStage<? extends T> other,
+     Consumer<? super T> action);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -510,8 +510,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public CompletionStage<Void> acceptEitherAsync
-        (CompletionStage<? extends T> other,
-         Consumer<? super T> action);
+    (CompletionStage<? extends T> other,
+     Consumer<? super T> action);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -529,9 +529,9 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public CompletionStage<Void> acceptEitherAsync
-        (CompletionStage<? extends T> other,
-         Consumer<? super T> action,
-         Executor executor);
+    (CompletionStage<? extends T> other,
+     Consumer<? super T> action,
+     Executor executor);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -562,8 +562,8 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public CompletionStage<Void> runAfterEitherAsync
-        (CompletionStage<?> other,
-         Runnable action);
+    (CompletionStage<?> other,
+     Runnable action);
 
     /**
      * Returns a new CompletionStage that, when either this or the
@@ -580,9 +580,9 @@ public interface CompletionStage<T> {
      * @return the new CompletionStage
      */
     public CompletionStage<Void> runAfterEitherAsync
-        (CompletionStage<?> other,
-         Runnable action,
-         Executor executor);
+    (CompletionStage<?> other,
+     Runnable action,
+     Executor executor);
 
     /**
      * Returns a new CompletionStage that, when this stage completes
@@ -597,7 +597,7 @@ public interface CompletionStage<T> {
      * @return the CompletionStage
      */
     public <U> CompletionStage<U> thenCompose
-        (Function<? super T, ? extends CompletionStage<U>> fn);
+    (Function<? super T, ? extends CompletionStage<U>> fn);
 
     /**
      * Returns a new CompletionStage that, when this stage completes
@@ -613,7 +613,7 @@ public interface CompletionStage<T> {
      * @return the CompletionStage
      */
     public <U> CompletionStage<U> thenComposeAsync
-        (Function<? super T, ? extends CompletionStage<U>> fn);
+    (Function<? super T, ? extends CompletionStage<U>> fn);
 
     /**
      * Returns a new CompletionStage that, when this stage completes
@@ -629,8 +629,8 @@ public interface CompletionStage<T> {
      * @return the CompletionStage
      */
     public <U> CompletionStage<U> thenComposeAsync
-        (Function<? super T, ? extends CompletionStage<U>> fn,
-         Executor executor);
+    (Function<? super T, ? extends CompletionStage<U>> fn,
+     Executor executor);
 
     /**
      * Returns a new CompletionStage that, when this stage completes

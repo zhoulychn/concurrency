@@ -42,7 +42,7 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
 /**
- * A thread-safe variant of {@link java.util.ArrayList} in which all mutative
+ * A thread-safe variant of {@link ArrayList} in which all mutative
  * operations ({@code add}, {@code set}, and so on) are implemented by
  * making a fresh copy of the underlying array.
  *
