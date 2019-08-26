@@ -342,8 +342,12 @@ public class ArrayBlockingQueue<E> extends AbstractQueue<E>
      * @throws NullPointerException {@inheritDoc}
      */
     public void put(E e) throws InterruptedException {
+
+        // 检查元素非空
         checkNotNull(e);
+
         final ReentrantLock lock = this.lock;
+
         lock.lockInterruptibly();
         try {
             while (count == items.length)

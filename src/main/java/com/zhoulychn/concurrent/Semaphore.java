@@ -63,8 +63,9 @@ public class Semaphore implements java.io.Serializable {
             for (;;) {
                 int available = getState();
                 int remaining = available - acquires;
-                if (remaining < 0 ||
-                    compareAndSetState(available, remaining))
+
+                // 还有资源并且cas失败会继续循环，重新获取资源
+                if (remaining < 0 || compareAndSetState(available, remaining))
                     return remaining;
             }
         }
@@ -75,22 +76,28 @@ public class Semaphore implements java.io.Serializable {
                 int next = current + releases;
                 if (next < current) // overflow
                     throw new Error("Maximum permit count exceeded");
+
+                // 循环释放资源直到成功
                 if (compareAndSetState(current, next))
                     return true;
             }
         }
 
+        // 减少资源数量
         final void reducePermits(int reductions) {
             for (;;) {
                 int current = getState();
                 int next = current - reductions;
                 if (next > current) // underflow
                     throw new Error("Permit count underflow");
+
+                // 循环释放资源直到成功
                 if (compareAndSetState(current, next))
                     return;
             }
         }
 
+        // 循环将剩余的资源置空
         final int drainPermits() {
             for (;;) {
                 int current = getState();
@@ -110,6 +117,7 @@ public class Semaphore implements java.io.Serializable {
             super(permits);
         }
 
+        // 自旋抢锁
         protected int tryAcquireShared(int acquires) {
             return nonfairTryAcquireShared(acquires);
         }
@@ -127,12 +135,15 @@ public class Semaphore implements java.io.Serializable {
 
         protected int tryAcquireShared(int acquires) {
             for (;;) {
+
+                // 判断队列前面是否有结点在排队
                 if (hasQueuedPredecessors())
                     return -1;
                 int available = getState();
                 int remaining = available - acquires;
-                if (remaining < 0 ||
-                    compareAndSetState(available, remaining))
+
+                // 没有资源，或者抢到资源就返回。 有资源没抢到就一直循环抢。
+                if (remaining < 0 || compareAndSetState(available, remaining))
                     return remaining;
             }
         }

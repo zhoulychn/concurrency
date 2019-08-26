@@ -928,7 +928,7 @@ public abstract class AbstractQueuedSynchronizer
 
                 // 如果前驱不为head 或者前驱为head但是没有抢到锁
 
-                // shouldParkAfterFailedAcquire(p, node) 失败意味着当前节点需要不断自旋获取锁，成功就开始阻塞当前节点
+                // 前驱节点已经等待唤醒就阻塞自己，否则就将前驱节点设置为等待唤醒，然后自己在抢一次，抢不到再阻塞自己
                 if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
                     interrupted = true;
             }
@@ -957,8 +957,7 @@ public abstract class AbstractQueuedSynchronizer
                     failed = false;
                     return;
                 }
-                if (shouldParkAfterFailedAcquire(p, node) &&
-                    parkAndCheckInterrupt())
+                if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
                     throw new InterruptedException();
             }
         } finally {
@@ -1027,8 +1026,7 @@ public abstract class AbstractQueuedSynchronizer
                         return;
                     }
                 }
-                if (shouldParkAfterFailedAcquire(p, node) &&
-                    parkAndCheckInterrupt())
+                if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
                     interrupted = true;
             }
         } finally {
@@ -1057,11 +1055,14 @@ public abstract class AbstractQueuedSynchronizer
                         return;
                     }
                 }
-                if (shouldParkAfterFailedAcquire(p, node) &&
-                    parkAndCheckInterrupt())
+
+                // 如果上一个节点处于等待唤醒状态，并且将自己阻塞之后，中断自己
+                if (shouldParkAfterFailedAcquire(p, node) && parkAndCheckInterrupt())
                     throw new InterruptedException();
             }
         } finally {
+
+            // 中断后处理，把自己移除队列
             if (failed)
                 cancelAcquire(node);
         }
