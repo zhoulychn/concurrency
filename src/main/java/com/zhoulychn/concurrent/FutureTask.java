@@ -149,6 +149,8 @@ public class FutureTask<V> implements RunnableFuture<V> {
      * @throws NullPointerException if the runnable is null
      */
     public FutureTask(Runnable runnable, V result) {
+
+        // 根据runnable构建task任务
         this.callable = Executors.callable(runnable, result);
         this.state = NEW;       // ensure visibility of callable
     }
@@ -188,6 +190,8 @@ public class FutureTask<V> implements RunnableFuture<V> {
     public V get() throws InterruptedException, ExecutionException {
         int s = state;
         if (s <= COMPLETING)
+
+            // 阻塞
             s = awaitDone(false, 0L);
         return report(s);
     }
@@ -426,6 +430,8 @@ public class FutureTask<V> implements RunnableFuture<V> {
                 LockSupport.parkNanos(this, nanos);
             }
             else
+
+                // 锁住当前线程
                 LockSupport.park(this);
         }
     }

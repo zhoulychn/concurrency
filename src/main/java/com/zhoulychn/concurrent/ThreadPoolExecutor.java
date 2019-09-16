@@ -1354,11 +1354,15 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
          * and so reject the task.
          */
         int c = ctl.get();
+
+        // 如果当前线程数小于核心线程数，直接创建新的线程执行任务
         if (workerCountOf(c) < corePoolSize) {
             if (addWorker(command, true))
                 return;
             c = ctl.get();
         }
+
+        // 尝试加入队列
         if (isRunning(c) && workQueue.offer(command)) {
             int recheck = ctl.get();
             if (! isRunning(recheck) && remove(command))
@@ -1366,6 +1370,8 @@ public class ThreadPoolExecutor extends AbstractExecutorService {
             else if (workerCountOf(recheck) == 0)
                 addWorker(null, false);
         }
+
+        // 加入队列失败，尝试使用最大的线程资源
         else if (!addWorker(command, false))
             reject(command);
     }

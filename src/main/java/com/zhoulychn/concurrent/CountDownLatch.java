@@ -169,10 +169,12 @@ public class CountDownLatch {
             return getState();
         }
 
+        // await中判断state是否为0，不为0会阻塞
         protected int tryAcquireShared(int acquires) {
             return (getState() == 0) ? 1 : -1;
         }
 
+        // countDown中减少state的值
         protected boolean tryReleaseShared(int releases) {
             // Decrement count; signal when transition to zero
             for (;;) {

@@ -83,6 +83,8 @@ public class CopyOnWriteArrayList<E>
     private static final long serialVersionUID = 8673264195747942595L;
 
     /** The lock protecting all mutators */
+
+    // 维护一个锁，在修改元素的时候加锁，然后复制原数组修改
     final transient ReentrantLock lock = new ReentrantLock();
 
     /** The array, accessed only via getArray/setArray. */

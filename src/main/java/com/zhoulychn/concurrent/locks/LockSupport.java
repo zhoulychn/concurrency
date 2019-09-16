@@ -172,9 +172,15 @@ public class LockSupport {
      * @since 1.6
      */
     public static void park(Object blocker) {
+
+        // 获取当前线程
         Thread t = Thread.currentThread();
+
+        // 设置线程的阻塞对象
         setBlocker(t, blocker);
         UNSAFE.park(false, 0L);
+
+        // 移除线程的阻塞对象
         setBlocker(t, null);
     }
 
